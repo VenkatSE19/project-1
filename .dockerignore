@@ -1,10 +1,10 @@
-.git
-.gitignore
-.dockerignore
 node_modules
 dist
+.git
+.github
+terraform
+k8s
+jenkins
+*.log
 .env
 .env.*
-!.env.example
-*.log
-.DS_Store
