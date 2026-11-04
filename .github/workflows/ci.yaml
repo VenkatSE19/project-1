@@ -1,0 +1,50 @@
+name: Code Build CI
+
+# Defines the events that trigger the workflow
+on:
+  push:
+        branches: [main]
+  pull_request:
+        branches: [main]
+
+
+jobs:
+# Job 1: Run Tests
+  test:
+    name: Run Unit Tests
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'v26.13.0'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Tests
+        run: npm test
+
+# Job 1: Build & Package Artifact
+  build:
+    name: Build & Package Artifact
+    runs-on: macOS-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'v26.13.0'
+          cache: 'npm' # Automates dependency caching
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Application
+        run: npm run build
