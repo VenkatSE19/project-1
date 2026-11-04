@@ -3,9 +3,9 @@ name: Code Build CI
 # Defines the events that trigger the workflow
 on:
   push:
-        branches: [main]
+        branches: [develop, main]
   pull_request:
-        branches: [main]
+        branches: [develop, main]
 
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
     runs-on: macOS-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -35,7 +35,7 @@ jobs:
     runs-on: macOS-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
